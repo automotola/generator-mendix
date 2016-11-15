@@ -98,6 +98,10 @@ function promptsNew () {
           name: 'Use jQuery (not recommended, only use it if external libraries need it)',
           value: 'jquery',
           checked: false
+        },{
+          name: 'Include React and React DOM (unofficial)',
+          value: 'react',
+          checked: false
         }/*
         // NOT IMPLEMENTED YET,{
           name: 'Add Execute Microflow shorthand',
