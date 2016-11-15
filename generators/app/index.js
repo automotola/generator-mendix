@@ -169,6 +169,8 @@ module.exports = yeoman.Base.extend({
           this.fs.copy(
             this.templatePath(reactPath + 'react.js'),
             this.destinationPath('src/' + this.widget.widgetName + '/lib/react.js')
+          )
+          this.fs.copy(
             this.templatePath(reactPath + 'react-dom.js'),
             this.destinationPath('src/' + this.widget.widgetName + '/lib/react-dom.js')
           )
@@ -183,7 +185,7 @@ module.exports = yeoman.Base.extend({
           }
           // 3. update Gulpfile
           // 4. update widget .js file
-          
+
 
         }
 
