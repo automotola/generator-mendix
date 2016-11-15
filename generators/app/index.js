@@ -12,9 +12,11 @@ var promptTexts = require('./lib/prompttexts.js');
 var text = require('./lib/text.js');
 
 var boilerPlatePath = 'AppStoreWidgetBoilerplate/',
-    emptyBoilerplatePath = 'WidgetBoilerplate/';
+    emptyBoilerplatePath = 'WidgetBoilerplate/',
+    reactPath = './lib/react/';
 
 var banner = text.getBanner(pkg);
+
 
 module.exports = yeoman.Base.extend({
   constructor: function () {
@@ -160,6 +162,29 @@ module.exports = yeoman.Base.extend({
             this.templatePath(source + 'src/WidgetName/widget/template/WidgetName.html'),
             this.destinationPath('src/' + this.widget.widgetName + '/widget/template/' + this.widget.widgetName + '.html')
           );
+        }
+
+        if (this.props.boilerplate === 'appstore' || this.props.widgetOptionsObj.react) {
+          // 1. include react and react-dom
+          this.fs.copy(
+            this.templatePath(reactPath + 'react.js'),
+            this.destinationPath('src/' + this.widget.widgetName + '/lib/react.js')
+            this.templatePath(reactPath + 'react-dom.js'),
+            this.destinationPath('src/' + this.widget.widgetName + '/lib/react-dom.js')
+          )
+          // 2. create /components/js and /components/jsx
+          var componentsJsDir = 'src/' + this.widget.widgetName + '/components/js'
+          var componentsJsxDir = 'src/' + this.widget.widgetName + '/components/jsx'
+          if (!fs.existsSync(componentsJsDir)){
+            fs.mkdirSync(componentsJsDir);
+          }
+          if (!fs.existsSync(componentsJsxDir)){
+            fs.mkdirSync(componentsJsxDir);
+          }
+          // 3. update Gulpfile
+          // 4. update widget .js file
+          
+
         }
 
         this.fs.copy(
